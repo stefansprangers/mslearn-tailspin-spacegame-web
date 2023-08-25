@@ -1,3 +1,17 @@
-pool: MyAgentPool
-steps:
-- bash: echo hello world
+# ASP.NET Core pipeline  
+# Build and test an ASP.NET Core project targeting .NET Core 3.x.  
+# Add steps that publish artifacts and deploy to an Azure web app.  
+  
+trigger:  
+- main  
+  
+pool:  
+  vmImage: ubuntu-latest 
+  
+variables:  
+  buildConfiguration: 'Release'  
+  
+steps:  
+- script: dotnet build --configuration $(buildConfiguration)  
+  displayName: 'dotnet build $(buildConfiguration)'  
+  
